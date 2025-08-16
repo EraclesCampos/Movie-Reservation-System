@@ -1,0 +1,9 @@
+POST http://localhost:3000/users/login
+Content-Type: application/json
+# Authorization: Bearer
+
+{
+    
+    "email": "Emi123@gamil.com",
+    "password": "hola"
+}
