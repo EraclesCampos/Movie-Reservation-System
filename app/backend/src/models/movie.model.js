@@ -1,4 +1,4 @@
-import { db } from '../database/connection.js'
+import { db } from '../config/connection.js'
 
 export const getAllMovies = async ()=>{
     try {
