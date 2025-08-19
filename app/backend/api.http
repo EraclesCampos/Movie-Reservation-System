@@ -7,3 +7,15 @@ Content-Type: application/json
     "email": "eracles@gamil.com",
     "password": "1234"
 }
+
+###
+
+POST http://localhost:3000/movies/createMovie
+Content-Type: application/json
+
+{
+    "name" : "Superman",
+    "description": "Superman es un superheroe que fue enviado a la tierra hace muchos años por la destruccion de su planeta y ha llegado a la tierra para salvarla de la maldad",
+    "duration" : 210,
+    "clasification" : "B"
+}
