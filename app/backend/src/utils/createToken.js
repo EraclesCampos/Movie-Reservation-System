@@ -1,4 +1,6 @@
 import jsonwebtoken from 'jsonwebtoken'
+import dotenv from "dotenv"
+dotenv.config()
 
 export const createToken = ({userId, userRole})=>{
     const token = jsonwebtoken.sign({id: userId, role: userRole}, process.env.JWT_SECRET, {expiresIn: process.env.JWT_EXPIRES_IN})

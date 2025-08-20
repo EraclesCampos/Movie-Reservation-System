@@ -3,10 +3,14 @@ Content-Type: application/json
 # Authorization: Bearer
 
 {
-    
+
     "email": "eracles@gamil.com",
     "password": "1234"
 }
+
+###
+
+GET http://localhost:3000/home
 
 ###
 
@@ -19,3 +23,17 @@ Content-Type: application/json
     "duration" : 210,
     "clasification" : "B"
 }
+
+###
+
+POST http://localhost:3000/showtimes/create-showtime
+Content-Type: application/json
+
+{
+    "roomId": 1,
+    "movieId": 2,
+    "datetime": "2025-08-19 18:30:00"
+}
+
+###
+GET http://localhost:3000/showtimes/get-all

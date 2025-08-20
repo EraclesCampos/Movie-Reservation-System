@@ -5,6 +5,7 @@ import cookieParser from 'cookie-parser'
 import homeRoutes from './routes/home.routes.js'
 import usersRoutes from './routes/users.routes.js'
 import moviesRoutes from './routes/movie.routes.js'
+import showtimesRouter from './routes/showtimes.routes.js'
 
 //middlewares globales
 const app = express()
@@ -19,5 +20,6 @@ app.use("/public", express.static(path.join(process.cwd(), "public")))
 app.use('/', homeRoutes)
 app.use('/users', usersRoutes)
 app.use('/movies', moviesRoutes)
+app.use('/showtimes', showtimesRouter)
 
 app.listen(3000, ()=>console.log('listening...'))

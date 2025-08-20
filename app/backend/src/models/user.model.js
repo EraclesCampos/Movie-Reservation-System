@@ -1,38 +1,29 @@
 import { db } from '../config/connection.js'
 import bcryptjs from 'bcryptjs'
-import dotenv from "dotenv"
 import { createToken } from '../utils/createToken.js'
 
-dotenv.config()
 
-const validateEmail = (email) => {
-  const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
-  return emailRegex.test(email)
-}
+
 
 export const register = async ({name, email, password})=>{
-    if(!name || !email || !password){
-        return {success: false, message: "Datos incompletos"}
-    }
-    if(!validateEmail(email)){
-        return {success: false, message: "Email invalido"}
-    }
+    
     try {
         
         const salt = bcryptjs.genSaltSync(5)
         const hashedPassword = bcryptjs.hashSync(password, salt)
-        const result = await db.execute("INSERT INTO users (id, name, email, password, role) VALUES (NULL, ?, ?, ?, 'user')",
+        const [result] = await db.execute("INSERT INTO users (id, name, email, password, role) VALUES (NULL, ?, ?, ?, 'user')",
             [name, email, hashedPassword]
         )
-        return {success: true, data: result}
+        return {success: true, id: result.insertId}
     } catch (e) {
         console.log(e)
+        if(error.code === "ER_DUP_ENTRY") return {success: false, message: "Email ya registrado"}
         return {success: false, message: "Error de servidor"}
     }
 }
 
 export const login = async ({email, password})=>{
-    if(!email || !password) return {success: false, message: "Datos incompletos"}
+    
     try{
         const [rows] = await db.execute("SELECT * FROM users WHERE email = ?", [email])
         if(rows.length > 0){

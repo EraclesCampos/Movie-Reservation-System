@@ -1,10 +1,24 @@
 import * as Users from '../models/user.model.js'
 
+const validateEmail = (email) => {
+  const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
+  return emailRegex.test(email)
+}
+
 export const register = async (req, res)=>{
+    const { name, email, password } = req.body
+    if(!name || !email || !password){
+            return res.status(402).json({success: false, message: "Datos incompletos"})
+        }
+        if(!validateEmail(email)){
+            return res.status(401).json({success: false, message: "Email invalido"})
+        }
     try{
         const result = await Users.register({...req.body})
         if(result.success){
-            return res.status(201).json({success: true, message: 'User registered'})
+            return res.status(201).json({success: true, message: 'Usuario registrado', userId: result.id})
+        }else{
+            return res.status(401).json({success: false, message: result.message})
         }
     }
     catch(e){
@@ -14,6 +28,8 @@ export const register = async (req, res)=>{
 }
 
 export const login = async (req, res)=>{
+    const {email, password} = req.body
+    if(!email || !password) return res.status(402).json({success: false, message: "Datos incompletos"})
     try {
         const result = await Users.login({...req.body})
         if(result.success){
@@ -32,7 +48,7 @@ export const login = async (req, res)=>{
             )
         }
         else{
-            return res.status(400).json({status: 'ok', message: result.message})
+            return res.status(400).json({success: false, message: result.message})
         }
     } catch (e) {
         console.log(e)
