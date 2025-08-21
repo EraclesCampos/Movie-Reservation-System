@@ -15,7 +15,7 @@ export const createShowtime = async ({ roomId, movieId, datetime })=>{
     }catch(e){
         console.log(e)
         if (e.code === "ER_NO_REFERENCED_ROW_2" || e.errno === 1452) {
-            return { success: false, message: "No existe la sala o pelicula" };
+            return { success: false, message: "No existe la sala o pelicula" }
         }
         return {success: false, message: "Error de servidor"}
     }
@@ -23,7 +23,23 @@ export const createShowtime = async ({ roomId, movieId, datetime })=>{
 
 export const getAllShowtimes = async ()=>{
     try{
-        const [rows] = await db.execute("SELECT * FROM showtimes")
+        const [rows] = await db.execute(`SELECT s.*, m.*, r.* FROM showtimes s
+            INNER JOIN movies m ON s.id_movie = m.id
+            INNER JOIN rooms r ON s.id_room = r.id`)
+        console.log(rows)
+        return rows
+    }catch(e){
+        console.log(e)
+        return {success: false, message: "Error de servidor"}
+    }
+}
+
+export const getShowtime = async (id)=>{
+    try{
+        const [rows] = await db.execute(`SELECT s.*, m.*, r.* FROM showtimes s
+            INNER JOIN movies m ON s.id_movie = m.id
+            INNER JOIN rooms r ON s.id_room = r.id
+            WHERE s.id = ?`, [id])
         console.log(rows)
         return rows
     }catch(e){

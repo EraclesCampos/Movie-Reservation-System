@@ -1,5 +1,4 @@
 import * as Movies from '../models/movie.model.js'
-import { file } from '../middlewares/files.js'
 
 export const getAllMovies = async (req, res)=>{
     try {

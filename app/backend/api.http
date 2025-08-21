@@ -10,7 +10,7 @@ Content-Type: application/json
 
 ###
 
-GET http://localhost:3000/home
+GET http://localhost:3000/movies/1
 
 ###
 
@@ -18,10 +18,10 @@ POST http://localhost:3000/movies/createMovie
 Content-Type: application/json
 
 {
-    "name" : "Superman",
-    "description": "Superman es un superheroe que fue enviado a la tierra hace muchos años por la destruccion de su planeta y ha llegado a la tierra para salvarla de la maldad",
-    "duration" : 210,
-    "clasification" : "B"
+    "name" : "Batman",
+    "description": "Batman es un niño que pierde a sus padres tras el asesinato de los mismos, batman se propone a buscar al asesino convirtiendose en el caballero de la noche, Batman",
+    "duration" : 220,
+    "clasification" : "C"
 }
 
 ###
@@ -32,8 +32,23 @@ Content-Type: application/json
 {
     "roomId": 1,
     "movieId": 2,
-    "datetime": "2025-08-19 18:30:00"
+    "datetime": "2025-08-22 20:30:00"
 }
 
 ###
 GET http://localhost:3000/showtimes/get-all
+
+###
+GET http://localhost:3000/showtimes/9
+
+
+### 
+POST http://localhost:3000/reservations/create-reservation
+Content-Type: application/json
+
+{
+    "id_showtime": 1, 
+    "id_user": 1, 
+    "id_seat": 1, 
+    "id_room": 1
+}

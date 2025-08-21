@@ -24,3 +24,16 @@ export const getAllShowtimes = async (req, res) =>{
         return res.json()
     }
 }
+
+export const getShowtime = async (req, res) =>{
+    const { id } = req.params
+    if(!id) return res.json({message: "Envia un parametro"})
+    try {
+        const showtime = await Showtimes.getShowtime(id)
+        console.log(showtime)
+        return res.json(showtime)
+    } catch (e) {
+        console.log(e)
+        return res.json()
+    }
+}
