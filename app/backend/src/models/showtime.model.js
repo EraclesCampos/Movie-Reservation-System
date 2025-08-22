@@ -1,4 +1,4 @@
-import { db } from "../config/connection.js";
+import { db } from "../config/connection.js"
 
 export const createShowtime = async ({ roomId, movieId, datetime }) => {
   try {
@@ -6,23 +6,23 @@ export const createShowtime = async ({ roomId, movieId, datetime }) => {
       `INSERT INTO showtimes (id_room, id_movie, date_time) VALUES
                                             (?, ?, ?)`,
       [roomId, movieId, datetime]
-    );
+    )
     if (result.affectedRows === 0) {
-      return { success: false, message: "Error al crear la funcion" };
+      return { success: false, message: "Error al crear la funcion" }
     }
     return {
       success: true,
       message: "Funcion creada correctamente",
       showtimeId: result.insertId,
-    };
-  } catch (e) {
-    console.log(e);
-    if (e.code === "ER_NO_REFERENCED_ROW_2" || e.errno === 1452) {
-      return { success: false, message: "No existe la sala o pelicula" };
     }
-    return { success: false, message: "Error de servidor" };
+  } catch (e) {
+    console.log(e)
+    if (e.code === "ER_NO_REFERENCED_ROW_2" || e.errno === 1452) {
+      return { success: false, message: "No existe la sala o pelicula" }
+    }
+    return { success: false, message: "Error de servidor" }
   }
-};
+}
 
 export const getAllShowtimes = async () => {
   try {
@@ -41,15 +41,15 @@ export const getAllShowtimes = async () => {
                 r.capacity AS room_capacity
             FROM showtimes s
             INNER JOIN movies m ON s.id_movie = m.id
-            INNER JOIN rooms r ON s.id_room = r.id;
-        `);
-    console.log(rows);
-    return rows;
+            INNER JOIN rooms r ON s.id_room = r.id
+        `)
+    console.log(rows)
+    return rows
   } catch (e) {
-    console.log(e);
-    return { success: false, message: "Error de servidor" };
+    console.log(e)
+    return { success: false, message: "Error de servidor" }
   }
-};
+}
 
 export const getShowtime = async (id) => {
   try {
@@ -69,13 +69,13 @@ export const getShowtime = async (id) => {
         FROM showtimes s
         INNER JOIN movies m ON s.id_movie = m.id
         INNER JOIN rooms r ON s.id_room = r.id
-        WHERE s.id = ?;
+        WHERE s.id = ?
         `,[id]
-    );
-    console.log(rows);
-    return rows;
+    )
+    console.log(rows)
+    return rows
   } catch (e) {
-    console.log(e);
-    return { success: false, message: "Error de servidor" };
+    console.log(e)
+    return { success: false, message: "Error de servidor" }
   }
-};
+}

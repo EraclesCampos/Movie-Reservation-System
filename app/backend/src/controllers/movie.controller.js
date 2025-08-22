@@ -24,7 +24,7 @@ export const getMovie = async (req, res)=>{
 export const createMovie = async (req, res)=>{
     const { name, description, duration, clasification } = req.body
     if (!req.file) {
-      return res.status(400).json({ success: false, message: "Debes enviar una imagen" });
+      return res.status(400).json({ success: false, message: "Debes enviar una imagen" })
     }
     const posterPath = `./public/posters/${req.file.filename}`
 

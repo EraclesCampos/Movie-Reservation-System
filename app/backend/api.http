@@ -52,3 +52,11 @@ Content-Type: application/json
     "id_seat": 1, 
     "id_room": 1
 }
+
+###
+GET http://localhost:3000/reservations/get-reservations
+Content-Type: application/json
+
+{
+    "id": 1
+}

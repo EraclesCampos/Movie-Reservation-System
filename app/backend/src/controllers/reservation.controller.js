@@ -16,3 +16,17 @@ export const createReservation = async (req, res)=>{
         res.status(500).json({success: false, message: "Error de servidor"})
     }
 }
+
+export const getReservations = async (req, res)=>{
+    const { id } = req.body
+    if(!id) return res.status(403).json({message: "Envia una ip"})
+    
+    try{
+        const reservations = await Reservations.getReservations({ id })
+        if(reservations.success) return res.status(200).json(reservations)
+        else return res.status(500).json({message: reservations.message})
+    }catch(e){
+        console.log(e)
+        return res.status(500).json({message: "Error al obtener las reservaciones"})
+    }
+}
