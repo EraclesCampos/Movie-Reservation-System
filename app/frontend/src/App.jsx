@@ -1,4 +1,6 @@
 import { Routes, Route, Navigate } from 'react-router-dom'
+import { useContext } from 'react'
+import { AppContext } from './components/context/context'
 import Layout from './components/layout/layout'
 import LoginPage from './pages/LoginPage/LoginPage'
 import RegisterPage from './pages/RegisterPage/RegisterPage'
@@ -7,17 +9,28 @@ import MovileDetailPage from './pages/MovieDetailPage/MovileDetailPage'
 import ProfilePage from './pages/ProfilePage/ProfilePage'
 import BookingPage from './pages/BookingPage/BookingPage'
 import NotFoundPage from './pages/NotFoundPage/NotFoundPage'
+import PublicRoute from './components/PublicRoute/PublicRoute'
+import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute'
 function App() {
+  const {isAuth, setIsAuth} = useContext(AppContext)
   return (
     <div>
       <Layout >
         <Routes>
           <Route path='/' element={<Navigate to='/home' replace/>}/>
           <Route path='/home' element={<HomePage />}/>
-          <Route path='/login' element={<LoginPage />}/>
+          <Route path='/login' element={
+            <PublicRoute isAuth={isAuth} redirectTo='/home'>
+              <LoginPage setIsAuth={setIsAuth}/>
+            </PublicRoute>
+          }/>
           <Route path='/register' element={<RegisterPage />}/>
           <Route path='/movie/:id' element={<MovileDetailPage />}/>
-          <Route path='/profile' element={<ProfilePage />}/>
+          <Route path='/profile' element={
+            <ProtectedRoute isAuth={isAuth} redirectTo='/home'>
+              <ProfilePage />
+            </ProtectedRoute>
+          }/>
           <Route path='/booking' element={<BookingPage />}/>
           <Route path='*' element={<NotFoundPage />}/>
         </Routes>

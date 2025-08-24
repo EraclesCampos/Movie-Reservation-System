@@ -31,11 +31,16 @@
   text-decoration: none; 
 }
 
-.header nav a:hover {
-  text-decoration: underline;
-}
-
 .header button {
   padding: 0.5rem 1rem;
   cursor: pointer;
+}
+.header-icon-profile{
+    cursor: pointer;
+}
+.header-icon-profile:hover, .header nav a:hover{
+    opacity: .8;
+}
+.header-icon-profile:active, .header nav a:active{
+    opacity: 1;
 }
