@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { useNavigate } from "react-router-dom"
+import { useNavigate, Link } from "react-router-dom"
 import Loader from "../../components/loader/loader"
 
 const LoginPage = ({setIsAuth})=>{
@@ -43,6 +43,7 @@ const LoginPage = ({setIsAuth})=>{
 
     return(
         <div className="login-form-container">
+            <h2>Login form</h2>
             <form action="" method="post">
                 <label htmlFor="email-login">Email</label>
                 <input type="email" name="email" id="email-login" value={email} onChange={(e)=>setEmail(e.target.value)} required/>
@@ -52,6 +53,9 @@ const LoginPage = ({setIsAuth})=>{
                 {loading ? <Loader /> : <button onClick={(e)=>handleSubmit(e)}>Submit</button>}
                 {error && <p className="error">{error}</p>}
             </form>
+            <div>
+                <p>¿No estas registrado? <Link to="/register">Registrate aqui</Link></p>
+            </div>
         </div>
     )
 }
