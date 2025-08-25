@@ -12,13 +12,13 @@ export const verifyToken = (req, res, next)=>{
         req.user = decoded
         next()
     } catch (e) {
-        return res.status(403).json({ message: "Token invalido o expirado" })
+        return res.status(402).json({ message: "Token invalido o expirado" })
     }
 }
 
 export const isAdmin = async (req, res, next) =>{
     if(req.user?.role !== "admin"){
-        return res.status(403).json({ message: "No puedes ejecutar esta accion" })
+        return res.status(402).json({ message: "No puedes ejecutar esta accion" })
     }
     next()
 }

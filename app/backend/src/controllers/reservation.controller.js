@@ -19,7 +19,7 @@ export const createReservation = async (req, res)=>{
 
 export const getReservations = async (req, res)=>{
     const { id } = req.body
-    if(!id) return res.status(403).json({message: "Envia una ip"})
+    if(!id) return res.status(402).json({message: "Envia una ip"})
     
     try{
         const reservations = await Reservations.getReservations({ id })
