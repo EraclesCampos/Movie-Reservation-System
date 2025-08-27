@@ -1,10 +1,9 @@
 import { Link } from 'react-router-dom'
-import { useContext } from 'react'
-import { AppContext } from '../context/context'
+import { useAuth } from '../context/context'
 import './header.css' 
 
 const Header = () => {
-    const { isAuth, setIsAuth } = useContext(AppContext)
+    const { isAuth } = useAuth() 
     return (
         <header className="header">
             <div className="header-left">

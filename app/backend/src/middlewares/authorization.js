@@ -4,7 +4,7 @@ dotenv.config()
 
 export const verifyToken = (req, res, next)=>{
     const authHeader = req.headers['authorization']
-    if(!authHeader) return res.status(401).json({ message: "No autorizado" })
+    if(!authHeader) return res.status(403).json({ message: "No autorizado" })
 
     const token = authHeader.split(' ')[1]
     try {
@@ -18,7 +18,7 @@ export const verifyToken = (req, res, next)=>{
 
 export const isAdmin = async (req, res, next) =>{
     if(req.user?.role !== "admin"){
-        return res.status(402).json({ message: "No puedes ejecutar esta accion" })
+        return res.status(403).json({ message: "No puedes ejecutar esta accion" })
     }
     next()
 }

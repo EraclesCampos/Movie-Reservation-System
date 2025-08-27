@@ -1,12 +1,10 @@
-import { AppContext } from "../../components/context/context"
-import { useContext } from "react"
+import { useAuth } from "../../components/context/context"
 
 const ProfilePage = ()=>{
-    const {isAuth, setIsAuth} = useContext(AppContext)
+    const {Logout} = useAuth()
 
     const CerrarSesion = ()=>{
-        localStorage.removeItem("token")
-        setIsAuth(false)
+        Logout()
     }
     return(
         <>

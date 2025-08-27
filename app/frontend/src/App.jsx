@@ -1,6 +1,5 @@
 import { Routes, Route, Navigate } from 'react-router-dom'
-import { useContext } from 'react'
-import { AppContext } from './components/context/context'
+import { useAuth } from './components/context/context'
 import Layout from './components/layout/layout'
 import LoginPage from './pages/LoginPage/LoginPage'
 import RegisterPage from './pages/RegisterPage/RegisterPage'
@@ -12,7 +11,7 @@ import NotFoundPage from './pages/NotFoundPage/NotFoundPage'
 import PublicRoute from './components/PublicRoute/PublicRoute'
 import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute'
 function App() {
-  const {isAuth, setIsAuth} = useContext(AppContext)
+  const {isAuth} = useAuth()
   return (
     <div>
       <Layout >
@@ -21,7 +20,7 @@ function App() {
           <Route path='/home' element={<HomePage />}/>
           <Route path='/login' element={
             <PublicRoute isAuth={isAuth} redirectTo='/home'>
-              <LoginPage setIsAuth={setIsAuth}/>
+              <LoginPage />
             </PublicRoute>
           }/>
           <Route path='/register' element={<RegisterPage />}/>
