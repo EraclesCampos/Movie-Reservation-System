@@ -10,15 +10,15 @@ export const useAuth = () => {
 
 export const AppProvider = ({children})=>{
     // const [isAuth, setIsAuth] = useState(localStorage.getItem('token') || false)
-    const [user, setUser] = useState(null)
+    const [user, setUser] = useState([])
     
     useEffect(()=>{
         verifyUser()
-    })
+    },[])
     
     const verifyUser = ()=>{
         const tokenSaved = localStorage.getItem("token")
-        const userSaved = localStorage.getItem("user")
+        const userSaved = JSON.parse(localStorage.getItem("user"))
 
         if(tokenSaved && userSaved){
             setUser(userSaved)

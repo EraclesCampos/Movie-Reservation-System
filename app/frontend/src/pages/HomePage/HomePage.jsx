@@ -1,4 +1,4 @@
-import { Link, Navigate, useNavigate } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import { useState, useEffect } from "react"
 import Loader from "../../components/loader/loader"
 const HomePage = ()=>{
@@ -47,7 +47,7 @@ const HomePage = ()=>{
                 <div className="movies-grid">
                 {
                 movies.map((movie, index)=>(
-                    <div className="movie-card" onClick={()=>navigate(`/movie/${movie.id}`)} key={index}>
+                    <div className="movie-card" onClick={()=>navigate(`/movie/${movie.name}/${movie.id}`)} key={index}>
                         <img src={`http://localhost:3000/${movie.poster}`} alt={movie.name} />
                         <div>
                             <p>{movie.duration}</p>

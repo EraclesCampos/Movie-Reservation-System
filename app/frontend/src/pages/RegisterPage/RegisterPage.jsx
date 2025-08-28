@@ -55,7 +55,11 @@ const RegisterPage = ({setIsAuth})=>{
 
                 <label htmlFor="password-register">Password</label>
                 <input type="password" name="password" id="password-register" value={password} onChange={(e)=>setPassword(e.target.value)} required/>
-                {loading ? <Loader /> : <button onClick={(e)=>handleSubmit(e)}>Submit</button>}
+                {loading ? 
+                    <div className="loader-container">
+                        <Loader />
+                    </div>
+                 : <button onClick={(e)=>handleSubmit(e)}>Submit</button>}
                 {error && <p className="error">{error}</p>}
             </form>
             <div>

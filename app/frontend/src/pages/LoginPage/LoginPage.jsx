@@ -35,7 +35,11 @@ const LoginPage = ()=>{
 
                 <label htmlFor="password-login">Password</label>
                 <input type="password" name="password" id="password-login" value={password} onChange={(e)=>setPassword(e.target.value)} required/>
-                {loading ? <Loader /> : <button onClick={(e)=>handleSubmit(e)}>Submit</button>}
+                {loading ? 
+                    <div className="loader-container">
+                        <Loader /> 
+                    </div>
+                : <button onClick={(e)=>handleSubmit(e)}>Submit</button>}
                 {error && <p className="error">{error}</p>}
             </form>
             <div>

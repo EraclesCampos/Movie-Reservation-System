@@ -4,3 +4,8 @@ body{
   font-family: sans-serif;
   background-color: #ccc;
 }
+.loader-container{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}

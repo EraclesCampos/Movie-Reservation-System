@@ -9,9 +9,9 @@ export const getAllMovies = async ()=>{
         res.status(500).json({message: 'Error de servidor'})
     }
 }
-export const getMovie = async (id)=>{
+export const getMovie = async ({slug, id})=>{
     try {
-        const [rows] = await db.execute('SELECT * FROM movies WHERE id = ?', [id])
+        const [rows] = await db.execute('SELECT * FROM movies WHERE id = ? AND slug = ?', [id, slug])
         return rows[0] || null
     } catch (e) {
         console.log(e)

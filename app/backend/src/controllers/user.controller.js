@@ -55,3 +55,22 @@ export const login = async (req, res)=>{
         res.status(500).json({success: false, message: 'Error de servidor'})
     }
 }
+
+export const getData = async (req, res)=>{
+    const {id} = req.body
+    if(!id || typeof(id) !== "number") return res.status(401).json({success: false, message: "Id invalido"})
+    try {
+        const data = await Users.getData()
+        if(data.success){
+            return res.status(200).json(
+                {
+                    name: data.name,
+                    email: data.email,
+                    role: data.role,
+                }
+            )
+        }
+    } catch (e) {
+        
+    }
+}

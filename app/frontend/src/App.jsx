@@ -4,7 +4,7 @@ import Layout from './components/layout/layout'
 import LoginPage from './pages/LoginPage/LoginPage'
 import RegisterPage from './pages/RegisterPage/RegisterPage'
 import HomePage from './pages/HomePage/HomePage'
-import MovileDetailPage from './pages/MovieDetailPage/MovileDetailPage'
+import MovieDetailPage from './pages/MovieDetailPage/MovieDetailPage'
 import ProfilePage from './pages/ProfilePage/ProfilePage'
 import BookingPage from './pages/BookingPage/BookingPage'
 import NotFoundPage from './pages/NotFoundPage/NotFoundPage'
@@ -24,7 +24,7 @@ function App() {
             </PublicRoute>
           }/>
           <Route path='/register' element={<RegisterPage />}/>
-          <Route path='/movie/:id' element={<MovileDetailPage />}/>
+          <Route path='/movie/:slug/:id' element={<MovieDetailPage />}/>
           <Route path='/profile' element={
             <ProtectedRoute isAuth={isAuth} redirectTo='/home'>
               <ProfilePage />
