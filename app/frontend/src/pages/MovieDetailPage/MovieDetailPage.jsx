@@ -11,15 +11,7 @@ const MovieDetailPage = ()=>{
         const fetchData = async ()=>{
             setLoading(true)
             try{
-                const response = await fetch(`http://localhost:3000/movies/${id}`,
-                    {   
-                        method: "GET",
-                        body: {
-                            slug,
-                            id,
-                        }
-                    }
-                )
+                const response = await fetch(`http://localhost:3000/movies/${slug}/${id}`)
                 const data = await response.json()
 
                 if(response.ok) setMovie(data)
