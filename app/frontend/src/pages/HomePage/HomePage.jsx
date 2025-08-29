@@ -20,7 +20,7 @@ const HomePage = ()=>{
                     setError(json.message)
                     return
                 }
-                console.log(json)
+                // console.log(json)
                 setMovies(json)            
             } catch (err) {
                 console.log(err)

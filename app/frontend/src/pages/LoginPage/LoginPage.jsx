@@ -18,12 +18,13 @@ const LoginPage = ()=>{
         const result = await Login({email, password})
 
         if(result.success){
-            navigate("/home")
+            console.log("logueado")
+            return
         }else{
             setError(result.message)
         }
         setLoading(false)
-
+        return null
     }
 
     return(

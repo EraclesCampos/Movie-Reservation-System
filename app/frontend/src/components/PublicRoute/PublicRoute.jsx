@@ -1,6 +1,6 @@
 import { Navigate } from 'react-router-dom'
 
-const PublicRoute = ({ children, isAuth, redirectTo = '/home' }) => {
+const PublicRoute = ({ children, isAuth, redirectTo }) => {
   if (isAuth) {
     return <Navigate to={redirectTo} replace />
   }

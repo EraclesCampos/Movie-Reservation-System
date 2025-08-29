@@ -10,7 +10,8 @@ export const useAuth = () => {
 
 export const AppProvider = ({children})=>{
     // const [isAuth, setIsAuth] = useState(localStorage.getItem('token') || false)
-    const [user, setUser] = useState([])
+    const [user, setUser] = useState(localStorage.getItem('user') || null)
+    const [loading, setLoading] = useState(true)
     
     useEffect(()=>{
         verifyUser()
@@ -23,8 +24,10 @@ export const AppProvider = ({children})=>{
         if(tokenSaved && userSaved){
             setUser(userSaved)
         }
+        setLoading(false)
     }
     const Login = async ({email, password})=>{
+        setLoading(true)
         try {
             const response = await fetch("http://localhost:3000/users/login", 
                 {
@@ -54,6 +57,8 @@ export const AppProvider = ({children})=>{
                 success: false,
                 message: err.message || "Error en el login"
             }
+        }finally{
+            setLoading(false)
         }
     }
 
@@ -67,7 +72,8 @@ export const AppProvider = ({children})=>{
         user,
         Login,
         Logout,
-        isAuth: !!user
+        isAuth: Boolean(user),
+        loading
     }
 
     return(

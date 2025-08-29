@@ -10,16 +10,25 @@ import BookingPage from './pages/BookingPage/BookingPage'
 import NotFoundPage from './pages/NotFoundPage/NotFoundPage'
 import PublicRoute from './components/PublicRoute/PublicRoute'
 import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute'
+import AdminPanel from './pages/AdminPage/AdminPage'
+import RedirectPage from './pages/RedirectPage/RedirectPage'
 function App() {
-  const {isAuth} = useAuth()
+  const {isAuth, user, loading} = useAuth()
+  // console.log(Boolean(user))
+  console.log(loading)
   return (
     <div>
       <Layout >
         <Routes>
-          <Route path='/' element={<Navigate to='/home' replace/>}/>
+          <Route path='/' element={<RedirectPage />}/>
+          <Route path='/admin' element={
+            <ProtectedRoute isAuth={isAuth} loading={loading} redirectTo='/home'>
+              {user?.role == 'admin' ? <AdminPanel /> : <NotFoundPage />}
+            </ProtectedRoute>
+          }/>
           <Route path='/home' element={<HomePage />}/>
           <Route path='/login' element={
-            <PublicRoute isAuth={isAuth} redirectTo='/home'>
+            <PublicRoute isAuth={isAuth} redirectTo='/'>
               <LoginPage />
             </PublicRoute>
           }/>
