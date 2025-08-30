@@ -1,10 +1,9 @@
-import { Link, useNavigate } from "react-router-dom"
-import { useState, useEffect } from "react"
-import Loader from "../../components/loader/loader"
-import {getMovies} from "../../Utils/Movies/Movies.js"
-const HomePage = ()=>{
-    const navigate = useNavigate()
+import { useEffect, useState } from "react"
+import { getMovies } from "../../../Utils/Movies/Movies"
+import Loader from "../../loader/loader"
+export const Movies= ()=>{
     const {movies, error, loading } = getMovies()
+
     if(loading){
         return(
             <div className="loader-container">
@@ -13,19 +12,20 @@ const HomePage = ()=>{
         )
     }
     return(
-        <div>
-            <h1>Cartelera</h1>
+        <div className="data-admin-panel">
             {error && <p className="error">{error}</p>}
             {movies.length > 0 ? (
                 <div className="movies-grid">
                 {
                 movies.map((movie, index)=>(
-                    <div className="movie-card" onClick={()=>navigate(`/movie/${movie.name}/${movie.id}`)} key={index}>
+                    <div className="movie-card" key={index}>
                         <img src={`http://localhost:3000/${movie.poster}`} alt={movie.name} />
                         <div>
-                            <p>{movie.duration}</p>
                             <h3>{movie.name}</h3>
-                            <Link to={`/movie/${movie.id}`}>Ver detalles</Link>
+                            <div className="buttons-admin-movie">
+                                <button>Editar</button>
+                                <button>Eliminar</button>
+                            </div>
                         </div>
                     </div>
                 ))
@@ -39,4 +39,3 @@ const HomePage = ()=>{
         </div>
     )
 }
-export default HomePage

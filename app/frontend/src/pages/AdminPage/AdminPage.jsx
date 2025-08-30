@@ -1,6 +1,9 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useAuth } from "../../components/context/context";
 import slugify from 'react-slugify'
+import { getMovies } from "../../Utils/Movies/Movies.js";
+import Loader from "../../components/loader/loader";
+import { Movies } from "../../components/Admin/Movies/Movies.jsx";
 
 const AdminPanel = ()=>{
     const [selected, setSelected] = useState('Movies')
@@ -18,6 +21,7 @@ const AdminPanel = ()=>{
             </div>
             <div>
                 <h2>{selected}</h2>
+                {selected === "Movies" && <Movies />}
             </div>
         </div>
     )
