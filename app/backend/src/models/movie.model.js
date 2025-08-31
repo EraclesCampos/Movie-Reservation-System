@@ -19,10 +19,10 @@ export const getMovie = async ({slug, id})=>{
     }
 }
 
-export const addMovie = async ({name, description, duration, clasification, poster})=>{
+export const addMovie = async ({name, slug, description, duration, clasification, poster})=>{
     try {
-        const [result] = await db.execute(`INSERT INTO movies (name, description, duration, clasification, poster) VALUES 
-                                        (?, ?, ?, ?, ?)`, [name, description, duration, clasification, poster])
+        const [result] = await db.execute(`INSERT INTO movies (name, slug, description, duration, clasification, poster) VALUES 
+                                        (?, ?, ?, ?, ?, ?)`, [name, slug, description, duration, clasification, poster])
         console.log(result)
         return {
             success: result.affectedRows === 1,

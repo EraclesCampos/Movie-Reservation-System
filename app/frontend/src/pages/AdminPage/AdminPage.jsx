@@ -20,7 +20,6 @@ const AdminPanel = ()=>{
                 <button onClick={(e)=>handleClick(e)} value={'Users'}>Users</button>
             </div>
             <div>
-                <h2>{selected}</h2>
                 {selected === "Movies" && <Movies />}
             </div>
         </div>

@@ -3,6 +3,7 @@ export const getMovies = ()=>{
     const [movies, setMovies] = useState([])
     const [error, setError] = useState('')
     const [loading, setLoading] = useState(false)
+    const [reload, setReload] = useState(false)
     // const navigate = useNavigate()
     useEffect(()=>{
         const fetchData = async()=>{
@@ -21,13 +22,15 @@ export const getMovies = ()=>{
             }
         }
         fetchData()
-    }, [])
+    }, [reload])
+
+    const loadMovies = ()=> setReload(!reload)
 
     return{
         movies,
         error,
         loading,
-
+        loadMovies
     }
 }
 

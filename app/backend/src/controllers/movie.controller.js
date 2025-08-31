@@ -22,7 +22,7 @@ export const getMovie = async (req, res)=>{
 }
 
 export const createMovie = async (req, res)=>{
-    const { name, description, duration, clasification } = req.body
+    const { name, slug, description, duration, clasification } = req.body
     if (!req.file) {
       return res.status(400).json({ success: false, message: "Debes enviar una imagen" })
     }
@@ -32,7 +32,7 @@ export const createMovie = async (req, res)=>{
         return res.status(400).json({success: false, message: "Faltan datos"})  
     } 
     try {
-        const result = await Movies.addMovie({name, description, duration, clasification, poster: posterPath})
+        const result = await Movies.addMovie({name, slug, description, duration, clasification, poster: posterPath})
 
         if(result.success) return res.status(201).json({success: true, id: result.resultId})
         else return res.status(500).json({ success: false, message: "No se pudo agregar la película" })
