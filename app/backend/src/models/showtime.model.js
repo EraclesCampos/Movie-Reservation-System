@@ -33,6 +33,7 @@ export const getAllShowtimes = async () => {
                 s.id_movie,
                 s.date_time,
                 m.name AS movie_name,
+                m.slug AS movie_slug,
                 m.description AS movie_description,
                 m.duration AS movie_duration,
                 m.clasification AS movie_clasification,
@@ -43,7 +44,7 @@ export const getAllShowtimes = async () => {
             INNER JOIN movies m ON s.id_movie = m.id
             INNER JOIN rooms r ON s.id_room = r.id
         `)
-    console.log(rows)
+    
     return rows
   } catch (e) {
     console.log(e)

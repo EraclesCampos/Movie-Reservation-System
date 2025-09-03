@@ -4,6 +4,7 @@ import slugify from 'react-slugify'
 import { getMovies } from "../../Utils/Movies/Movies.js";
 import Loader from "../../components/loader/loader";
 import { Movies } from "../../components/Admin/Movies/Movies.jsx";
+import { Showtimes } from "../../components/Admin/Showtimes/Showtimes.jsx";
 
 const AdminPanel = ()=>{
     const [selected, setSelected] = useState('Movies')
@@ -21,6 +22,7 @@ const AdminPanel = ()=>{
             </div>
             <div>
                 {selected === "Movies" && <Movies />}
+                {selected === "Showtimes" && <Showtimes />}
             </div>
         </div>
     )

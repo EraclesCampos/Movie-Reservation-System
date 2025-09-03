@@ -17,7 +17,6 @@ export const createShowtime = async (req, res)=>{
 export const getAllShowtimes = async (req, res) =>{
     try {
         const showtimes = await Showtimes.getAllShowtimes()
-        console.log(showtimes)
         return res.json(showtimes)
     } catch (e) {
         console.log(e)
