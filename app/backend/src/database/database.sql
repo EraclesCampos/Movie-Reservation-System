@@ -51,6 +51,8 @@ CREATE TABLE reserved_seats(
     id INT AUTO_INCREMENT PRIMARY KEY NOT NULL,
     id_seat INT NOT NULL,
     id_room INT NOT NULL,
+    id_reservation INT NOT NULL
     FOREIGN KEY (id_room) REFERENCES rooms(id) ON DELETE RESTRICT,
-    FOREIGN KEY (id_seat) REFERENCES seats(id) ON DELETE RESTRICT
+    FOREIGN KEY (id_seat) REFERENCES seats(id) ON DELETE RESTRICT,
+    FOREIGN KEY (id_reservation) REFERENCES reservations (id) ON DELETE RESTRICT
 );

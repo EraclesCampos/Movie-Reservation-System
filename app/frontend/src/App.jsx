@@ -39,7 +39,7 @@ function App() {
               <ProfilePage />
             </ProtectedRoute>
           }/>
-          <Route path='/booking' element={<BookingPage />}/>
+          <Route path='/booking/:slug/:id' element={<BookingPage />}/>
           <Route path='*' element={<NotFoundPage />}/>
         </Routes>
       </Layout>

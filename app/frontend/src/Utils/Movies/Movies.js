@@ -34,3 +34,33 @@ export const getMovies = ()=>{
     }
 }
 
+export const getMovie = ({slug, id})=>{
+    const [movie, setMovie] = useState(null)
+    const [error, setError] = useState('')
+    const [loading, setLoading] = useState(false)
+
+    useEffect(()=>{
+        const fetchData = async ()=>{
+            setLoading(true)
+            try{
+                const response = await fetch(`http://localhost:3000/movies/${slug}/${id}`)
+                const data = await response.json()
+
+                if(response.ok) setMovie(data)
+                else setError(data.message) 
+            }catch(err){
+                console.log(err)
+                setError("Error al obtener la informacion del servidor")
+            }finally{
+                setLoading(false)
+            }
+        }
+        fetchData()
+    },[])
+
+    return{
+        movie,
+        error,
+        loading,
+    }
+}

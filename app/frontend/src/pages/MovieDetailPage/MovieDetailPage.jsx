@@ -1,30 +1,10 @@
 import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
 import Loader from "../../components/loader/loader"
+import { getMovie } from "../../Utils/Movies/Movies"
 const MovieDetailPage = ()=>{
     const {slug, id} = useParams()
-    const [movie, setMovie] = useState(null)
-    const [error, setError] = useState('')
-    const [loading, setLoading] = useState(false)
-
-    useEffect(()=>{
-        const fetchData = async ()=>{
-            setLoading(true)
-            try{
-                const response = await fetch(`http://localhost:3000/movies/${slug}/${id}`)
-                const data = await response.json()
-
-                if(response.ok) setMovie(data)
-                else setError(data.message) 
-            }catch(err){
-                console.log(err)
-                setError("Error al obtener la informacion del servidor")
-            }finally{
-                setLoading(false)
-            }
-        }
-        fetchData()
-    },[])
+    const {movie, error, loading} = getMovie({slug, id})
     
     if(loading){
         return(

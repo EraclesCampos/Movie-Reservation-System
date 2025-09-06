@@ -11,8 +11,6 @@ export const getShowtimes = ()=>{
             try {
                 const response = await fetch("http://localhost:3000/showtimes/get-all")
                 const json = await response.json()
-                console.log("json:")
-                console.log(json)
                 if(response.ok) setShowtimes(json)
                 else setError(json.message) 
             } catch (err) {
