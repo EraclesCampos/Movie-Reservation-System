@@ -3,6 +3,7 @@ import { getShowtimes } from "../../../Utils/Showtimes/Showtimes"
 import Loader from "../../loader/loader"
 import { getMovies } from "../../../Utils/Movies/Movies"
 import {getRooms} from "../../../Utils/Rooms/Rooms"
+import { FormatShowtime } from "../../../Utils/Showtimes/FormatShowtime"
 
 export const Showtimes = ()=>{
     const [showModal, setShowModal] = useState(false)
@@ -13,16 +14,7 @@ export const Showtimes = ()=>{
     const [movieId, setMovieId] = useState("")
     const [roomId, setRoomId] = useState("")
     const [datetime, setDatetime] = useState("")
-    const [rooms, setRooms] = useState([]);
-
-    useEffect(() => {
-        async function fetchRooms() {
-        const data = await getRooms();
-        if (data) setRooms(data);
-        }
-        fetchRooms();
-    }, []);
-    console.log("Rooms: ", rooms)
+    const {rooms} = getRooms()
 
     const id_movies = []
 
@@ -105,7 +97,7 @@ export const Showtimes = ()=>{
                                                         if(showtime.id_movie === _showtime.id_movie){
                                                             return (
                                                                 <li key={_index} className="showtime-info">
-                                                                    <p>Dia y fecha: {_showtime.date_time}</p>
+                                                                    <p>Dia y fecha: {FormatShowtime(_showtime.date_time)}</p>
                                                                     <p>Sala: {_showtime.room_name}</p>
                                                                 </li>
                                                             )

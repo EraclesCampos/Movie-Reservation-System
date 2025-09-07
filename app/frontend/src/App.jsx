@@ -14,8 +14,6 @@ import AdminPanel from './pages/AdminPage/AdminPage'
 import RedirectPage from './pages/RedirectPage/RedirectPage'
 function App() {
   const {isAuth, user, loading} = useAuth()
-  // console.log(Boolean(user))
-  console.log(loading)
   return (
     <div>
       <Layout >
