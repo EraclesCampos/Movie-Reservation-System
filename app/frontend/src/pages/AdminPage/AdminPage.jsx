@@ -6,6 +6,7 @@ import Loader from "../../components/loader/loader";
 import { Movies } from "../../components/Admin/Movies/Movies.jsx";
 import { Showtimes } from "../../components/Admin/Showtimes/Showtimes.jsx";
 import { Rooms } from "../../components/Admin/Rooms/Rooms.jsx";
+import { Seats } from "../../components/Admin/Seats/Seats.jsx";
 
 const AdminPanel = ()=>{
     const [selected, setSelected] = useState('Movies')
@@ -27,6 +28,7 @@ const AdminPanel = ()=>{
                 {selected === "Movies" && <Movies />}
                 {selected === "Showtimes" && <Showtimes />}
                 {selected === "Rooms" && <Rooms />}
+                {selected === "Seats" && <Seats />}
             </div>
         </div>
     )
