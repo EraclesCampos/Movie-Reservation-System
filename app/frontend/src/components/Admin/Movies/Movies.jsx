@@ -35,6 +35,7 @@ export const Movies = ()=>{
             duration: 0,
         })
         setImage(null)
+        setErrorSubmit(null)
     }
     const handleSubmit = async (e)=>{
         e.preventDefault() 

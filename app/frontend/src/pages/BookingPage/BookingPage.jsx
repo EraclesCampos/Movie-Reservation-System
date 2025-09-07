@@ -13,7 +13,7 @@ const BookingPage = ()=>{
     const {showtimes} = getShowtimes()
     // console.log(showtime)
     const {seats, reservedSeats, errorSeats, loadingSeats} = useSeats(showtime?.id_room)
-    console.log(errorSeats)
+    
     const handleSelectShowtime = (showtime)=>{
         setShowtime(showtime)
     }

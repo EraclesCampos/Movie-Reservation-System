@@ -61,6 +61,7 @@ export const Showtimes = ()=>{
         setMovieId("")
         setRoomId("")
         setDatetime("")
+        setErrorSubmit(null)
     }
 
     if(loading){

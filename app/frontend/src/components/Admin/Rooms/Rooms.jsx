@@ -58,6 +58,7 @@ export const Rooms = () => {
             name: "",
             capacity: ""
         })
+        setErrorSubmit(null)
     }
     return (
         <div className="data-admin-panel">
