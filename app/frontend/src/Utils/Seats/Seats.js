@@ -19,7 +19,6 @@ export const useSeats = (room_id)=>{
                     }
                 )
                 const dataSeats = await response.json()
-                console.log(dataSeats)
                 if(!response.ok){
                     throw new Error(dataSeats.message)
                 }
