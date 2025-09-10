@@ -11,8 +11,9 @@ const BookingPage = ()=>{
     const {movie, error, loading} = getMovie({slug, id})
     const [showtime, setShowtime]= useState(null)
     const {showtimes} = getShowtimes()
-    // console.log(showtime)
+    console.log(showtime)
     const {seats, reservedSeats, errorSeats, loadingSeats} = useSeats(showtime?.id_room)
+    let idRows =  []
     
     const handleSelectShowtime = (showtime)=>{
         setShowtime(showtime)
@@ -44,6 +45,55 @@ const BookingPage = ()=>{
                      : <p>Aun no hay funciones para esta pelicula</p>
                     }
                 </div>
+                {seats?.length > 0 ? 
+                <div className="seats-container" style={{ width: '100%', maxWidth: '800px', margin: '0 auto' }}>
+                    <h2>Selecciona tus asientos</h2>
+                    {seats.map((seat, index) => {
+                        if (!idRows.includes(seat.row_id)) {
+                            idRows.push(seat.row_id);
+                            return (
+                                <div 
+                                    key={index} 
+                                    className="seat-row" 
+                                    style={{ display: 'flex', gap: '2%', width: '100%', marginBottom: '10px' }}
+                                >
+                                    <span style={{ flex: '0 0 8%', textAlign: 'center' }}>{seat.row_id}</span>
+                                    <div 
+                                        className="row-seats" 
+                                        style={{ display: 'flex', gap: '2%', flex: '0 0 92%' }}
+                                    >
+                                        {seats.map((_seat, _index) => {
+                                            if (seat.row_id === _seat.row_id) {
+                                                return (
+                                                    <div 
+                                                        key={_index} 
+                                                        className="seat" 
+                                                        style={{ 
+                                                            backgroundColor: 'white', 
+                                                            border: '2px solid black', 
+                                                            padding: '2px', 
+                                                            flex: '1 0 auto', 
+                                                            aspectRatio: '1/1', 
+                                                            display: 'flex', 
+                                                            alignItems: 'center', 
+                                                            justifyContent: 'center' 
+                                                        }}
+                                                    >
+                                                        {_seat.number_seat}
+                                                    </div>
+                                                );
+                                            }
+                                            return null;
+                                        })}
+                                    </div>
+                                </div>
+                            );
+                        }
+                        return null;
+                    })}
+                </div>
+                : showtime === null ? null :<p>Esta sala aun no tiene asientos</p>}
+
                 <div className="booking-info">
                     <h3>Carrito</h3>
                     <div className="booking-info-movie" style={{display: "flex"}}>

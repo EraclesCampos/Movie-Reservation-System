@@ -77,29 +77,49 @@ export const Seats = ()=>{
             </select>
             : <p>No hay salas aun</p>}
             {seats?.length > 0 ? 
-            <div className="seats-container">
-                {seats.map((seat, index)=>{
-                    if(!idRows.includes(seat.row_id)){
-                        idRows.push(seat.row_id)
-                        return(
-                            <div key={index} className="seat-row">
-                                <span>{seat.row_id}</span>
-                                <div className="row-seats">
-                                    {seats.map((_seat, _index)=>{
-                                        if(seat.row_id === _seat.row_id){
-                                            return(
-                                                <div key={_index} className="seat">
+            <div className="seats-container" style={{ width: '100%', maxWidth: '800px', margin: '0 auto' }}>
+                {seats.map((seat, index) => {
+                    if (!idRows.includes(seat.row_id)) {
+                        idRows.push(seat.row_id);
+                        return (
+                            <div 
+                                key={index} 
+                                className="seat-row" 
+                                style={{ display: 'flex', gap: '2%', width: '100%', marginBottom: '10px' }}
+                            >
+                                <span style={{ flex: '0 0 8%', textAlign: 'center' }}>{seat.row_id}</span>
+                                <div 
+                                    className="row-seats" 
+                                    style={{ display: 'flex', gap: '2%', flex: '0 0 92%' }}
+                                >
+                                    {seats.map((_seat, _index) => {
+                                        if (seat.row_id === _seat.row_id) {
+                                            return (
+                                                <div 
+                                                    key={_index} 
+                                                    className="seat" 
+                                                    style={{ 
+                                                        backgroundColor: 'white', 
+                                                        border: '2px solid black', 
+                                                        padding: '2px', 
+                                                        flex: '1 0 auto', 
+                                                        aspectRatio: '1/1', 
+                                                        display: 'flex', 
+                                                        alignItems: 'center', 
+                                                        justifyContent: 'center' 
+                                                    }}
+                                                >
                                                     {_seat.number_seat}
                                                 </div>
-                                            ) 
+                                            );
                                         }
-                                        return null
+                                        return null;
                                     })}
                                 </div>
                             </div>
-                        )
+                        );
                     }
-                    return null
+                    return null;
                 })}
             </div>
             : <p>Esta sala aun no tiene asientos</p>}
