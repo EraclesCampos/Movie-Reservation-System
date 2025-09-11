@@ -1,5 +1,5 @@
 import { useParams } from "react-router-dom"
-import { useState } from "react"
+import { useState,  useEffect } from "react"
 import { getMovie } from "../../Utils/Movies/Movies"
 import { getShowtimes } from "../../Utils/Showtimes/Showtimes"
 import Loader from "../../components/loader/loader"
@@ -10,14 +10,25 @@ const BookingPage = ()=>{
     const {slug, id} = useParams()
     const {movie, error, loading} = getMovie({slug, id})
     const [showtime, setShowtime]= useState(null)
+    const [selectedSeats, setSelectedSeats] = useState([])
     const {showtimes} = getShowtimes()
-    console.log(showtime)
     const {seats, reservedSeats, errorSeats, loadingSeats} = useSeats(showtime?.id_room)
     let idRows =  []
-    
     const handleSelectShowtime = (showtime)=>{
         setShowtime(showtime)
+        setSelectedSeats([])
     }
+    const handleSelectSeat = (_seat) => {
+        console.log(_seat)
+        setSelectedSeats(prevSeats => {
+            if (prevSeats.some(seat => seat.id === _seat.id)) {
+            return prevSeats.filter(seat => seat.id !== _seat.id)
+            } else {
+            return [...prevSeats, _seat]
+            }
+        })
+    }
+
     if(loading){
         return(
             <div className="loader-container">
@@ -50,7 +61,7 @@ const BookingPage = ()=>{
                     <h2>Selecciona tus asientos</h2>
                     {seats.map((seat, index) => {
                         if (!idRows.includes(seat.row_id)) {
-                            idRows.push(seat.row_id);
+                            idRows.push(seat.row_id)
                             return (
                                 <div 
                                     key={index} 
@@ -67,32 +78,34 @@ const BookingPage = ()=>{
                                                 return (
                                                     <div 
                                                         key={_index} 
-                                                        className="seat" 
+                                                        className="seat"
+                                                        onClick={()=>handleSelectSeat(_seat)} 
                                                         style={{ 
-                                                            backgroundColor: 'white', 
+                                                            backgroundColor: selectedSeats?.includes(_seat) ? '#90D5FF' : 'white',
                                                             border: '2px solid black', 
                                                             padding: '2px', 
                                                             flex: '1 0 auto', 
                                                             aspectRatio: '1/1', 
                                                             display: 'flex', 
                                                             alignItems: 'center', 
-                                                            justifyContent: 'center' 
+                                                            justifyContent: 'center' ,
+                                                            cursor: "pointer" 
                                                         }}
                                                     >
                                                         {_seat.number_seat}
                                                     </div>
-                                                );
+                                                )
                                             }
-                                            return null;
+                                            return null
                                         })}
                                     </div>
                                 </div>
-                            );
+                            )
                         }
-                        return null;
+                        return null
                     })}
                 </div>
-                : showtime === null ? null :<p>Esta sala aun no tiene asientos</p>}
+                : showtime === null ? null : <p>Esta sala aun no tiene asientos</p>}
 
                 <div className="booking-info">
                     <h3>Carrito</h3>
@@ -119,6 +132,16 @@ const BookingPage = ()=>{
                                 <p>{showtime.room_name}</p>
                             )}
                         </div>
+                    </div>
+                    <div className="booking-info-reserved-seats">
+                        <p>Asientos</p>
+                        {selectedSeats?.length > 0 ?
+                            selectedSeats.map((seat, index)=>(
+                                <div key={index} className="booking-info-seat-target">
+                                    <p>{seat.row_id}{seat.number_seat}</p>
+                                </div>
+                            ))
+                        : <p>No se han seleccionado asientos</p>}
                     </div>
                 </div>
             </>

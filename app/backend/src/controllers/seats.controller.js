@@ -5,7 +5,6 @@ export const getSeats = async (req, res) =>{
     if(!room_id) return res.status(400).json({success: false,  message: "Debes enviar el id de la sala"})
     try{
         const result = await Seats.getSeats(room_id)
-        console.log(result)
         return res.status(200).json(result)
     }catch(e){
         console.log(e)
