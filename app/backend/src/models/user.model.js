@@ -47,3 +47,13 @@ export const getData = async (id)=>{
         return {success: false, message: "Error de servidor"}
     }
 }
+
+export const getUsers = async ()=>{
+    try {
+        const [rows] = await db.execute("SELECT * FROM users")
+        return rows
+    } catch (error) {
+        console.log(error)
+        return {success: false, message: "Error de servidor"}
+    }
+}

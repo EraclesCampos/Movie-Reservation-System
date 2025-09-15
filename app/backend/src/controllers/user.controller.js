@@ -74,3 +74,13 @@ export const getData = async (req, res)=>{
         
     }
 }
+
+export const getUsers = async (req, res)=>{
+    try {
+        const result = await Users.getUsers()
+        return res.json(result)
+    } catch (error) {
+        console.log(error)
+        return res.status(500).json({success: false, message: "Error de servidor"})
+    }
+}
