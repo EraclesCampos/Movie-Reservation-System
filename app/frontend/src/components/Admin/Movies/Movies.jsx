@@ -3,7 +3,10 @@ import { getMovies } from "../../../Utils/Movies/Movies"
 import slugify from "react-slugify"
 import Loader from "../../loader/loader"
 export const Movies = ()=>{
-    const [showModal, setShowModal] = useState(false)
+    const [showModal, setShowModal] = useState({
+        showed: false,
+        idEdit: false
+    })
     const [image, setImage] = useState(null)
     const [formData, setFormData] = useState({
         name: '',
@@ -15,6 +18,8 @@ export const Movies = ()=>{
     const [errorSubmit, setErrorSubmit] = useState(null)
     const [loadingSubmit, setLoadingSubmit] = useState(false)
     const {movies, error, loading, loadMovies } = getMovies()
+    const [movieToEdit, setMovieToEdit] = useState(null)
+    console.log(movieToEdit)
     const handleImageChange = (e)=>{
         const file = e.target.files[0]
         if(file) setImage(file)
@@ -25,14 +30,35 @@ export const Movies = ()=>{
             [e.target.name]: e.target.value
         })
     }
+    const handleShowModal = (edit, movie)=>{
+        if(edit){
+            setShowModal({
+                showed: true,
+                isEdit: true
+            })
+            setMovieToEdit(movie)
+            setFormData({
+                id: movie.id,
+                name: movie.name,
+                slug: movie.slug,
+                description: movie.description,
+                clasification: movie.clasification,
+                duration: movie.duration,
+            })
+        }
+    }
     const handleCloseModal = ()=>{
-        setShowModal(false)
+        setShowModal({
+            showed: false,
+            isEdit: false
+        })
         setFormData({
+            id: '',
             name: '',
             slug: '',
             description: '',
             clasification: '',
-            duration: 0,
+            duration: '',
         })
         setImage(null)
         setErrorSubmit(null)
@@ -42,19 +68,23 @@ export const Movies = ()=>{
         setLoadingSubmit(true)
 
         const submitData = new FormData()
-        const slugImage = slugify(formData.name)
+        const slugName = slugify(formData.name)
 
+        submitData.append('id', formData.id)
         submitData.append('name', formData.name)
-        submitData.append('slug', slugImage)
+        submitData.append('slug', slugName)
         submitData.append('description', formData.description)
         submitData.append('clasification', formData.clasification)
         submitData.append('duration', formData.duration)
         if(image){
             submitData.append('poster', image)
         }
+        else{
+            submitData.append('existingImage', movieToEdit.poster)
+        }
         const token = localStorage.getItem("token")
         try {
-            const response = await fetch("http://localhost:3000/movies/createMovie",
+            const response = await fetch(`http://localhost:3000/movies/${showModal.isEdit ? "editMovie" : "createMovie"}`,
                 {
                     headers: { Authorization: `Bearer ${token}` },
                     method: "POST",
@@ -89,7 +119,7 @@ export const Movies = ()=>{
         <div className="data-admin-panel">
             <div className="admin-header">
                 <h2>Admin Movies</h2>
-                <button className="btn-add" onClick={() => setShowModal(true)}>
+                <button className="btn-add" onClick={() => setShowModal({showed: true, isEdit: false})}>
                     + Add Movie
                 </button>
             </div>
@@ -103,7 +133,7 @@ export const Movies = ()=>{
                         <div>
                             <h3>{movie.name}</h3>
                             <div className="buttons-admin-movie">
-                                <button>Editar</button>
+                                <button onClick={()=>handleShowModal(true, movie)}>Editar</button>
                                 <button>Eliminar</button>
                             </div>
                         </div>
@@ -116,7 +146,7 @@ export const Movies = ()=>{
             )
 
             }
-            {showModal && (
+            {showModal.showed && (
                 <div className="modal-overlay">
                     <div className="modal-content">
                         <h3>Add new movie</h3>
@@ -150,6 +180,8 @@ export const Movies = ()=>{
                                 onChange={handleInputChange} 
                             />
                             <div className="image-upload">
+                                {movieToEdit && <input type="hidden" name="existingImage" value={movieToEdit.poster} />}
+
                                 <input 
                                     type="file"
                                     name="poster"

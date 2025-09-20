@@ -33,3 +33,17 @@ export const addMovie = async ({name, slug, description, duration, clasification
         return {message: 'Error de servidor'}
     }
 }
+
+export const editMovie = async ({id, name, slug, description, duration, clasification, poster})=>{
+    try{
+        const [result] = await db.execute(`
+            UPDATE movies SET name = ?, slug = ?, description = ?, duration = ?, clasification = ?, poster = ?
+            WHERE id = ?`,[name, slug, description, duration, clasification, poster, id])
+        return {
+            success: result.affectedRows === 1
+        }
+    }catch(err){
+        console.log(err)
+        return {success: false, message: "Earror al actualizar los dtos"}
+    }
+}

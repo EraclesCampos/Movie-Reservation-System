@@ -20,8 +20,8 @@ const HomePage = ()=>{
                 <div className="movies-grid">
                 {
                 movies.map((movie, index)=>(
-                    <div className="movie-card" onClick={()=>navigate(`/booking/${movie.slug}/${movie.id}`)} key={index}>
-                        <img src={`http://localhost:3000/${movie.poster}`} alt={movie.name} />
+                    <div className="movie-card" style={{width: '200px'}} onClick={()=>navigate(`/booking/${movie.slug}/${movie.id}`)} key={index}>
+                        <img src={`http://localhost:3000/${movie.poster}`} style={{width: '100%'}} alt={movie.name} />
                         <div>
                             <p>{movie.duration}</p>
                             <h3>{movie.name}</h3>

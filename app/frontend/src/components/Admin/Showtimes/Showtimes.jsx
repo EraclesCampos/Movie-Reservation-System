@@ -87,9 +87,9 @@ export const Showtimes = ()=>{
                             if(!id_movies.includes(showtime.id_movie)){
                                 id_movies.push(showtime.id_movie)
                                 return (
-                                    <li className="showtime-item" key={index}>
-                                        <div className="aside-showtime">
-                                            <img src={`http://localhost:3000/${showtime.movie_poster}`} alt={showtime.movie_slug} />
+                                    <li className="showtime-item" style={{display: "flex"}} key={index}>
+                                        <div className="aside-showtime" style={{width: '200px'}}>
+                                            <img src={`http://localhost:3000/${showtime.movie_poster}`} style={{width: '100%'}} alt={showtime.movie_slug} />
                                         </div>
                                         <div className="showtime-data">
                                             <ul>
@@ -98,7 +98,7 @@ export const Showtimes = ()=>{
                                                         if(showtime.id_movie === _showtime.id_movie){
                                                             return (
                                                                 <li key={_index} className="showtime-info">
-                                                                    <p>Dia y fecha: {FormatShowtime(_showtime.date_time)}</p>
+                                                                    <p>Fecha y hora: {FormatShowtime(_showtime.date_time)}</p>
                                                                     <p>Sala: {_showtime.room_name}</p>
                                                                 </li>
                                                             )
