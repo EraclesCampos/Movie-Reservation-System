@@ -12,6 +12,7 @@ import PublicRoute from './components/PublicRoute/PublicRoute'
 import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute'
 import AdminPanel from './pages/AdminPage/AdminPage'
 import RedirectPage from './pages/RedirectPage/RedirectPage'
+import ReservationsPage from './pages/ReservationsPage/ReservationsPage'
 function App() {
   const {isAuth, user, loading} = useAuth()
   return (
@@ -38,6 +39,7 @@ function App() {
             </ProtectedRoute>
           }/>
           <Route path='/booking/:slug/:id' element={<BookingPage />}/>
+          <Route path='/reservations' element={<ReservationsPage />}/>
           <Route path='*' element={<NotFoundPage />}/>
         </Routes>
       </Layout>

@@ -54,9 +54,5 @@ Content-Type: application/json
 }
 
 ###
-GET http://localhost:3000/reservations/get-reservations
+GET http://localhost:3000/reservations/get-reservations/1
 Content-Type: application/json
-
-{
-    "id": 1
-}

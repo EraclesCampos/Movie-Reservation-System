@@ -34,6 +34,10 @@ const BookingPage = ()=>{
         })
     }
     const handleSubmit = async (e)=>{
+        if(!user){
+            setErrorSubmit("Necesitas iniciar sesion para reservar")
+            return
+        }
         const token = localStorage.getItem("token")
         setLoadingSubmit(true)
         const dataReservation = {

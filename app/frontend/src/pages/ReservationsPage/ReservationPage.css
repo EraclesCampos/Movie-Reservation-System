@@ -1,0 +1,164 @@
+.reservations-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 2rem;
+    font-family: 'Arial', sans-serif;
+}
+
+.reservations-header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.back-button {
+    color: #007bff;
+    text-decoration: none;
+    margin-bottom: 1rem;
+    display: inline-block;
+}
+
+.back-button:hover {
+    text-decoration: underline;
+}
+
+.reservations-header h1 {
+    color: #333;
+    margin-bottom: 0.5rem;
+}
+
+.reservations-header p {
+    color: #666;
+}
+
+.loading, .error-message {
+    text-align: center;
+    padding: 2rem;
+    font-size: 1.1rem;
+}
+
+.error-message {
+    color: #dc3545;
+}
+
+.empty-state {
+    text-align: center;
+    padding: 3rem;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.empty-state h3 {
+    color: #333;
+    margin-bottom: 1rem;
+}
+
+.empty-state p {
+    color: #666;
+    margin-bottom: 2rem;
+}
+
+
+.reservations-grid {
+    display: grid;
+    gap: 1.5rem;
+}
+
+.reservation-card {
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    padding: 1.5rem;
+    transition: transform 0.3s ease;
+}
+
+.reservation-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #e9ecef;
+}
+
+.reservation-id {
+    font-weight: 600;
+    color: #333;
+}
+
+
+.movie-title {
+    color: #333;
+    margin-bottom: 1rem;
+    font-size: 1.2rem;
+}
+
+.reservation-details {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.detail {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.icon {
+    font-size: 1.1rem;
+}
+
+.reservation-actions {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.cancel-button, .details-button {
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 0.9rem;
+}
+
+.cancel-button {
+    background: #dc3545;
+    color: white;
+}
+
+.cancel-button:hover {
+    background: #c82333;
+}
+
+.details-button {
+    background: #6c757d;
+    color: white;
+}
+
+.details-button:hover {
+    background: #545b62;
+}
+
+@media (max-width: 768px) {
+    .reservations-container {
+        padding: 1rem;
+    }
+    
+    .reservation-header {
+        flex-direction: column;
+        gap: 0.5rem;
+        align-items: flex-start;
+    }
+    
+    .reservation-actions {
+        flex-direction: column;
+    }
+    
+    .cancel-button, .details-button {
+        width: 100%;
+    }
+}

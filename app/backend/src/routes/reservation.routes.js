@@ -5,6 +5,6 @@ import { verifyToken, isAdmin } from "../middlewares/authorization.js"
 const router = express.Router()
 
 router.post("/create-reservation", verifyToken, createReservation)
-router.get("/get-reservations", getReservations)
+router.get("/get-reservations/:id", verifyToken, getReservations)
 
 export default router

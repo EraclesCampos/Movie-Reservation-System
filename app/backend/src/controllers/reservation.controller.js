@@ -18,12 +18,11 @@ export const createReservation = async (req, res)=>{
 }
 
 export const getReservations = async (req, res)=>{
-    const { id } = req.body
-    if(!id) return res.status(402).json({message: "Envia una ip"})
-    
+    const { id } = req.params
+    if(!id) return res.status(400).json({message: "Envia un id"})
     try{
         const reservations = await Reservations.getReservations({ id })
-        if(reservations.success) return res.status(200).json(reservations)
+        if(reservations.success) return res.status(200).json(reservations.result)
         else return res.status(500).json({message: reservations.message})
     }catch(e){
         console.log(e)

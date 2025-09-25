@@ -60,7 +60,7 @@ export const createReservation = async ({ id_showtime, id_user, seats, id_room }
     
 export const getReservations = async ({ id })=>{
     try {
-        const [result] = await db.execute(
+        const [rows] = await db.execute(
             `SELECT
             r.id AS reservation_id,
             r.date_reservation,
@@ -74,13 +74,17 @@ export const getReservations = async ({ id })=>{
             m.poster AS movie_poster,
             rm.id AS room_id,
             rm.name AS room_name,
-            rm.capacity AS room_capacity
+            rm.capacity AS room_capacity,
+            se.row_id AS seat_row,
+            se.number_seat AS number_seat
             FROM reservations r
             INNER JOIN showtimes s ON r.id_showtime = s.id
             INNER JOIN movies m ON s.id_movie = m.id
             INNER JOIN rooms rm ON s.id_room = rm.id
+            INNER JOIN reserved_seats rs ON r.id = rs.id_reservation
+            INNER JOIN seats se ON se.id = rs.id_seat
             WHERE r.id_user = ?`, [id])
-            return {success: true, result};
+        return {success: true, result: rows}
     } catch (e) {
         console.log(e)
         return {success: false, message: "Error al obtener las reservaciones"}
