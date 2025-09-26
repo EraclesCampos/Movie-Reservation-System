@@ -68,7 +68,7 @@ const ReservationsPage = () => {
                                     </div>
                                     <div className="detail">
                                         <span className="icon">💺</span>
-                                        <span>Asiento: {reservacion.seats.join(', ')}</span>
+                                        <span>Asientos: {reservacion.seats.join(', ')}</span>
                                     </div>
                                     {reservacion.room_name && (
                                         <div className="detail">

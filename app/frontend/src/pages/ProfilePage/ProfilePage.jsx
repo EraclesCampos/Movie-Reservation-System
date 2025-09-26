@@ -42,12 +42,12 @@ const ProfilePage = () => {
                         <Link to="/reservations" className="action-button">
                             Ver Mis Reservaciones
                         </Link>
-                        <button className="action-button red">Eliminar cuenta</button>
                         {isAdmin && (
-                            <Link to="/admin" className="action-button admin">
-                                Panel de Administración
+                            <Link to="/admin" className="action-button">
+                                Panel de Administracion
                             </Link>
                         )}
+                        <button className="action-button red">Eliminar cuenta</button>
                     </div>
                 </section>
 

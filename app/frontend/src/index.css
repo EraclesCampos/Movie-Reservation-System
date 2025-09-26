@@ -4,8 +4,33 @@ body{
   font-family: sans-serif;
   background-color: #ccc;
 }
-.loader-container{
-  width: 100%;
-  display: flex;
-  justify-content: center;
+/* .loader-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 200px;
+    width: 100%;
+} */
+.loader-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* background-color: rgba(255, 255, 255, 0.8); */
+    z-index: 1000;
+}
+.error-message{
+  color: red;
+  text-align: center;
+  margin-top: 1rem;
+}
+footer{
+  text-align: center;
+  padding: 1rem;
+  background-color: #333;
+  color: white;
 }

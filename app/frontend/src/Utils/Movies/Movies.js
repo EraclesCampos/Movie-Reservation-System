@@ -2,12 +2,11 @@ import { useState, useEffect } from "react"
 export const getMovies = ()=>{
     const [movies, setMovies] = useState([])
     const [error, setError] = useState('')
-    const [loading, setLoading] = useState(false)
+    const [loading, setLoading] = useState(true)
     const [reload, setReload] = useState(false)
     // const navigate = useNavigate()
     useEffect(()=>{
         const fetchData = async()=>{
-            setLoading(true)
             try {
                 const response = await fetch("http://localhost:3000/movies/")
                 const json = await response.json()

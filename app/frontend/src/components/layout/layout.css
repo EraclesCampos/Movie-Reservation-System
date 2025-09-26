@@ -1,3 +1,21 @@
 .main{
-    min-height: 70vh;
+    min-height: 95vh;
+    /* margin-bottom: 60px; */
+}
+.info-footer{
+    text-align: center;
+    margin-bottom: 10px;
+    color: white;
+}
+.links-footer{
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+.links-footer a{
+    color: white;
+    transition: color 0.3s;
+}
+.links-footer a:hover{
+    color: #ddd;
 }
