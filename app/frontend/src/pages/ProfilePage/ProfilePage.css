@@ -114,11 +114,11 @@
     background: #0056b3;
 }
 
-.action-button.admin {
+.action-button.admin, .red {
     background: #dc3545;
 }
 
-.action-button.admin:hover {
+.action-button.admin:hover, .red:hover {
     background: #c82333;
 }
 
