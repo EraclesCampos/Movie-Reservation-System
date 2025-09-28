@@ -1,0 +1,67 @@
+.movie-detail-container{
+    min-height: 92vh;
+    padding-bottom: 30px;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: grid;
+    place-items: center;
+}
+.movie-detail-card {
+    /* box-sizing: border-box; hace que el padding cuente dentro del width */
+    /* width: 100%;            ocupa todo el ancho disponible */
+    max-width: 800px;       /* no crece más de 700px */
+    min-width: 250px;       /* evita que se haga demasiado chico */
+    
+    padding: 20px 30px;
+    margin: 30px 10px;      /* centra horizontalmente */
+    
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.494);
+    border-radius: 8px;
+}
+.movie-detail-card img{
+    width: 100%;
+    max-width: 300px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    margin-bottom: 20px;
+}
+.movie-detail-info{
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+    max-width: 350px;
+    justify-content: center;
+}
+.movie-detail-info span{
+    font-weight: bold;
+}
+.movie-detail-actions{
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.button-detail-booking{
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: #007BFF;
+    color: white;
+    cursor: pointer;
+    text-decoration: none;
+    flex: 1;
+    transition: all 0.3s ease;
+}
+.button-detail-booking:hover{
+    background-color: #0056b3;
+}
+.movie-detail-sinopsis{
+    color: white;
+    text-align: center;
+    max-width: 800px;
+}
