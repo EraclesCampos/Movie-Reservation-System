@@ -8,14 +8,12 @@
     place-items: center;
 }
 .movie-detail-card {
-    /* box-sizing: border-box; hace que el padding cuente dentro del width */
-    /* width: 100%;            ocupa todo el ancho disponible */
-    max-width: 800px;       /* no crece más de 700px */
-    min-width: 250px;       /* evita que se haga demasiado chico */
-    
+    box-sizing: border-box;
+    width: 100%;
+    max-width: 800px;
+    min-width: 250px;
     padding: 20px 30px;
-    margin: 30px 10px;      /* centra horizontalmente */
-    
+    margin: 30px 10px; 
     display: flex;
     gap: 20px;
     flex-wrap: wrap;
@@ -28,12 +26,12 @@
     max-width: 300px;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-    margin-bottom: 20px;
 }
 .movie-detail-info{
     display: flex;
     flex-direction: column;
     gap: 50px;
+    width: 100%;
     max-width: 350px;
     justify-content: center;
 }
