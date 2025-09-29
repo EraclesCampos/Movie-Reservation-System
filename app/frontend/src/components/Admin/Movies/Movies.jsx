@@ -128,8 +128,8 @@ export const Movies = ()=>{
                 <div className="movies-grid">
                 {
                 movies.map((movie, index)=>(
-                    <div className="movie-card" style={{width: '200px'}} key={index}>
-                        <img src={`http://localhost:3000/${movie.poster}`} style={{width: '100%'}} alt={movie.name} />
+                    <div className="movie-card" key={index}>
+                        <img src={`http://localhost:3000/${movie.poster}`} alt={movie.name} />
                         <div>
                             <h3>{movie.name}</h3>
                             <div className="buttons-admin-movie">
