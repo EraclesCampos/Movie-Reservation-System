@@ -8,7 +8,7 @@ const validateEmail = (email) => {
 export const register = async (req, res)=>{
     const { name, email, password } = req.body
     if(!name || !email || !password){
-            return res.status(402).json({success: false, message: "Datos incompletos"})
+            return res.status(401).json({success: false, message: "Datos incompletos"})
         }
         if(!validateEmail(email)){
             return res.status(401).json({success: false, message: "Email invalido"})
@@ -29,7 +29,7 @@ export const register = async (req, res)=>{
 
 export const login = async (req, res)=>{
     const {email, password} = req.body
-    if(!email || !password) return res.status(402).json({success: false, message: "Datos incompletos"})
+    if(!email || !password) return res.status(401).json({success: false, message: "Datos incompletos"})
     try {
         const result = await Users.login({...req.body})
         if(result.success){

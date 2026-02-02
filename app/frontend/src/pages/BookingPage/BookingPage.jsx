@@ -6,6 +6,7 @@ import Loader from "../../components/loader/loader"
 import { FormatShowtime } from "../../Utils/Showtimes/FormatShowtime"
 import { useSeats } from "../../Utils/Seats/Seats"
 import { useAuth } from "../../components/context/context"
+import "./BookingPage.css"
 
 const BookingPage = ()=>{
     const {slug, id} = useParams()
@@ -15,6 +16,7 @@ const BookingPage = ()=>{
     const [showtime, setShowtime]= useState(null)
     const [selectedSeats, setSelectedSeats] = useState([])
     const {showtimes} = getShowtimes()
+    const newShowtimes = showtimes?.filter(s=> s.id_movie === movie.id)
     const {seats, reservedSeats, errorSeats, loadingSeats} = useSeats(showtime?.id_room)
     const {user} = useAuth()
     const navigate = useNavigate()
@@ -78,17 +80,12 @@ const BookingPage = ()=>{
             <>
                 <h1>Horarios</h1>
                 <div className="booking-showtimes-conatiner">
-                    {showtimes.length > 0 ? 
-                        showtimes.map((showtime, index)=>{
-                            if(showtime.id_movie === movie.id){
-                                return (
-                                    <div key={index}  style={{backgroundColor: "#ddd", width: "max-content", padding: "5px", marginBottom: "10px", cursor: "pointer"}} className="date-showtimes" onClick={e=>handleSelectShowtime(showtime)}>
-                                        <p>{FormatShowtime(showtime.date_time)}</p>
-                                    </div>
-                                )
-                            }
-                            return null
-                        })
+                    {newShowtimes.length > 0 ? 
+                        newShowtimes.map((showtime, index)=>(
+                            <div key={index} className="date-showtimes" onClick={e=>handleSelectShowtime(showtime)}>
+                                <p>{FormatShowtime(showtime.date_time)}</p>
+                            </div>
+                        ))
                      : <p>Aun no hay funciones para esta pelicula</p>
                     }
                 </div>

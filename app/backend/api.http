@@ -56,3 +56,13 @@ Content-Type: application/json
 ###
 GET http://localhost:3000/reservations/get-reservations/1
 Content-Type: application/json
+
+###
+POST http://localhost:1234/create
+Content-Type: application/json
+
+{
+    "Title": "",
+    "Description": "Crear endpoint para editar tareas",
+    "Date": "2025-11-26 09:00:00"
+}

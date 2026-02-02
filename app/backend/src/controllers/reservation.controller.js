@@ -2,7 +2,7 @@ import * as Reservations from '../models/reservation.model.js'
 
 export const createReservation = async (req, res)=>{
     const { id_showtime, id_user, seats, id_room } = req.body
-    if(!id_showtime || !id_user || !seats || !id_room) return res.status(402).json({message: "Faltan datos"})
+    if(!id_showtime || !id_user || !seats || !id_room) return res.status(401).json({message: "Faltan datos"})
     try{    
         const result = await Reservations.createReservation({id_showtime, id_user, seats, id_room})
         if(result.success){
