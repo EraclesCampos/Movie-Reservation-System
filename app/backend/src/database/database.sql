@@ -1,6 +1,5 @@
 -- Active: 1752613142348@@localhost@3306@movie_reservation_system
-DROP DATABASE movie_reservation_system;
-CREATE DATABASE movie_reservation_system;
+CREATE DATABASE IF NOT EXISTS movie_reservation_system;
 USE movie_reservation_system;
 CREATE TABLE users(
     id INT AUTO_INCREMENT PRIMARY KEY NOT NULL,
