@@ -6,7 +6,7 @@ export const getAllMovies = async ()=>{
         return rows
     } catch (e) {
         console.log(e)
-        res.status(500).json({message: 'Error de servidor'})
+        return {message: 'Error de servidor'}
     }
 }
 export const getMovie = async ({slug, id})=>{
@@ -15,7 +15,7 @@ export const getMovie = async ({slug, id})=>{
         return rows[0] || null
     } catch (e) {
         console.log(e)
-        res.status(500).json({message: 'Error de servidor'})
+        return {message: 'Error de servidor'}
     }
 }
 
