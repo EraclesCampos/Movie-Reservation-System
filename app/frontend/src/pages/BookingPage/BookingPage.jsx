@@ -76,9 +76,9 @@ const BookingPage = ()=>{
     }
     return(
         <div className="booking-container">
+            <h1>Horarios</h1>
             {movie && 
-            <>
-                <h1>Horarios</h1>
+            <div className="booking-container-flex">
                 <div className="booking-showtimes-conatiner">
                     {newShowtimes.length > 0 ? 
                         newShowtimes.map((showtime, index)=>(
@@ -144,7 +144,9 @@ const BookingPage = ()=>{
                 <div className="booking-info">
                     <h3>Carrito</h3>
                     <div className="booking-info-movie" style={{display: "flex"}}>
-                        <img style={{width: "80px"}} src={`http://localhost:3000/${movie.poster}`} alt="" />
+                        <div className="container-img-movie">
+                            <img src={`http://localhost:3000/${movie.poster}`} alt={movie.slug} />
+                        </div>
                         <div>
                             <h4>{movie.name}</h4>
                             <p>Clasificacion: {movie.clasification}</p>
@@ -184,7 +186,7 @@ const BookingPage = ()=>{
                     </div>
                     {errorSubmit && <p>{errorSubmit}</p>}
                 </div>
-            </>
+            </div>
             }
         </div>
     )

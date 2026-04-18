@@ -12,7 +12,7 @@ export const register = async ({name, email, password})=>{
         return {success: true, id: result.insertId}
     } catch (e) {
         console.log(e)
-        if(error.code === "ER_DUP_ENTRY") return {success: false, message: "Email ya registrado"}
+        if(e.code === "ER_DUP_ENTRY") return {success: false, message: "Email ya registrado"}
         return {success: false, message: "Error de servidor"}
     }
 }

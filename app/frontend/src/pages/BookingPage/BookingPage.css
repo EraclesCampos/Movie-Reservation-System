@@ -1,3 +1,18 @@
-.booking-container{
+/* escepto el primer elemento */
+.booking-container-flex{
+    width: 100%;
+    margin: 20px 40px;
     display: flex;
+    justify-content: space-between;
+}
+.booking-info-movie{
+    max-width: 50%;
+}
+
+.container-img-movie{
+    width: 300px;
+    max-width: 25%;
+}
+.container-img-movie img{
+    width: 100%;
 }

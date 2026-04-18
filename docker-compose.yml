@@ -1,0 +1,49 @@
+services:
+  
+  backend:
+    build: ./app/backend
+    container_name: movie_backend
+    networks:
+      - movie_network
+    environment:
+      - DB_HOST=database
+      - DB_USER=movie_user
+      - DB_PASSWORD=movie_pass
+      - DB_NAME=movie_reservation_system
+    env_file:
+      - ./app/backend/.env
+    ports:
+      - "3000:3000"
+    depends_on:
+      - database
+  
+  frontend:
+    build: ./app/frontend
+    container_name: movie_frontend
+    networks:
+      - movie_network
+    ports:
+      - "80:80"
+    depends_on:
+      - backend
+
+  database:
+    image: mysql:8
+    container_name: movie_db
+    networks:
+      - movie_network
+    environment:
+      MYSQL_ROOT_PASSWORD: root123
+      MYSQL_DATABASE: movie_reservation_system
+      MYSQL_USER: movie_user
+      MYSQL_PASSWORD: movie_pass
+    volumes:
+      - db_data:/var/lib/mysql
+      - ./app/backend/init.sql:/docker-entrypoint-initdb.d/init.sql
+
+volumes:
+  db_data:
+
+networks:
+  movie_network:
+    driver: bridge
